@@ -1,4 +1,4 @@
-package com.example.gadsleaderboardapp.network
+package com.example.gadsleaderboardapp.backend
 
 import com.example.gadsleaderboardapp.models.LearningLeader
 import retrofit2.Call

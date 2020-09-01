@@ -4,7 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.gadsleaderboardapp.models.LearningLeader
-import com.example.gadsleaderboardapp.network.BackendInterface
+import com.example.gadsleaderboardapp.backend.BackendInterface
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
