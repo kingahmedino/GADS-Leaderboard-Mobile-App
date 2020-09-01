@@ -1,6 +1,6 @@
 package com.example.gadsleaderboardapp.network
 
-import com.example.gadsleaderboardapp.fragments.LearningLeadersFragment
+import com.example.gadsleaderboardapp.models.LearningLeader
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -16,7 +16,7 @@ interface BackendInterface {
         @Field("hours") hours: String,
         @Field("country") country: String,
         @Field("badgeUrl") badgeUrl: String
-    ): Call<LearningLeadersFragment>
+    ): Call<LearningLeader>
 
     companion object{
         operator fun invoke(): BackendInterface{
