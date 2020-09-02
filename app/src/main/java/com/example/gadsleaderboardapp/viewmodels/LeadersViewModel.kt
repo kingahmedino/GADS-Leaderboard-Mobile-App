@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import com.example.gadsleaderboardapp.interfaces.RepoResponseListener
 import com.example.gadsleaderboardapp.interfaces.ViewModelResponseListener
 import com.example.gadsleaderboardapp.models.LearningLeader
+import com.example.gadsleaderboardapp.models.SkillIQLeader
 import com.example.gadsleaderboardapp.repositories.DataRepository
 
 class LeadersViewModel: ViewModel(), RepoResponseListener {
@@ -15,12 +16,21 @@ class LeadersViewModel: ViewModel(), RepoResponseListener {
         DataRepository.getLearningLeaders()
     }
 
+    fun returnSkillIQLeaders(){
+        DataRepository.mRepoResponseListener = this
+        DataRepository.getSkillIQLeaders()
+    }
+
     override fun onSuccess(s: String) {
         mViewModelResponseListener?.onFailure(s)
     }
 
-    override fun onResponseSuccessful(learningLeaderResponse: MutableLiveData<MutableList<LearningLeader>>) {
-        mViewModelResponseListener?.onSuccess(learningLeaderResponse)
+    override fun onLearningLeaderResponseSuccessful(learningLeaderResponse: MutableLiveData<MutableList<LearningLeader>>) {
+        mViewModelResponseListener?.onLearningLeaderSuccess(learningLeaderResponse)
+    }
+
+    override fun onSkillIQLeaderResponseSuccessful(skillIQLeaderResponse: MutableLiveData<MutableList<SkillIQLeader>>) {
+        mViewModelResponseListener?.onSkillIQLeaderSuccess(skillIQLeaderResponse)
     }
 
     override fun onResponseFailure(s: String) {

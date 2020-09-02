@@ -14,6 +14,7 @@ import com.example.gadsleaderboardapp.R
 import com.example.gadsleaderboardapp.interfaces.RepoResponseListener
 import com.example.gadsleaderboardapp.interfaces.ViewModelResponseListener
 import com.example.gadsleaderboardapp.models.LearningLeader
+import com.example.gadsleaderboardapp.models.SkillIQLeader
 import com.example.gadsleaderboardapp.viewmodels.LeadersViewModel
 
 class LearningLeadersFragment : Fragment(), ViewModelResponseListener {
@@ -36,10 +37,14 @@ class LearningLeadersFragment : Fragment(), ViewModelResponseListener {
         leadersViewModel?.returnLearningLeaders()
     }
 
-    override fun onSuccess(learningLeaderResponse: MutableLiveData<MutableList<LearningLeader>>) {
+    override fun onLearningLeaderSuccess(learningLeaderResponse: MutableLiveData<MutableList<LearningLeader>>) {
         learningLeaderResponse.observe(this, Observer {
             Toast.makeText(context, "${it.size}", Toast.LENGTH_SHORT).show()
         })
+    }
+
+    override fun onSkillIQLeaderSuccess(skillIQLeaderResponse: MutableLiveData<MutableList<SkillIQLeader>>) {
+
     }
 
     override fun onFailure(s: String) {
