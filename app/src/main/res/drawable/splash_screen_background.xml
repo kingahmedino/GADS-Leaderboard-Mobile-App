@@ -10,7 +10,7 @@
         android:bottom="600dp"
         android:drawable="@drawable/ellipse"
         android:left="-160dp"
-        android:right="220dp"
+        android:right="270dp"
         android:top="-150dp" />
     <item
         android:width="215dp"
