@@ -7,7 +7,8 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".fragments.SkillIQLeadersFragment">
+        tools:context=".fragments.SkillIQLeadersFragment"
+        android:padding="5dp">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/skill_iq_leader_rv"
