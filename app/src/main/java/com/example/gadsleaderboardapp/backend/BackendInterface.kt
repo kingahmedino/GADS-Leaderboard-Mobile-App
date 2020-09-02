@@ -9,19 +9,13 @@ import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
 
 interface BackendInterface {
-    @FormUrlEncoded
-    @GET("api/hours")
-    fun getLearningLeaders(
-        @Field("name") name: String,
-        @Field("hours") hours: String,
-        @Field("country") country: String,
-        @Field("badgeUrl") badgeUrl: String
-    ): Call<LearningLeader>
+    @GET("/api/hours")
+    fun getLearningLeaders(): Call<MutableList<LearningLeader>>
 
     companion object{
         operator fun invoke(): BackendInterface{
             return Retrofit.Builder()
-                .baseUrl("https://gadsapi.herokuapp.com/")
+                .baseUrl("https://gadsapi.herokuapp.com")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
                 .create(BackendInterface::class.java)
