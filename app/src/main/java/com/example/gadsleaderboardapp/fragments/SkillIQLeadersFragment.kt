@@ -9,14 +9,17 @@ import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.example.gadsleaderboardapp.R
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.gadsleaderboardapp.adapters.SkillIQLeadersAdapter
 import com.example.gadsleaderboardapp.databinding.FragmentSkillIqLeadersBinding
 import com.example.gadsleaderboardapp.interfaces.ViewModelResponseListener
 import com.example.gadsleaderboardapp.models.LearningLeader
 import com.example.gadsleaderboardapp.models.SkillIQLeader
 import com.example.gadsleaderboardapp.viewmodels.LeadersViewModel
+import kotlinx.android.synthetic.main.fragment_skill_iq_leaders.*
 
 class SkillIQLeadersFragment : Fragment(), ViewModelResponseListener {
+    lateinit var mBinding: FragmentSkillIqLeadersBinding
     private var leadersViewModel: LeadersViewModel? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,8 +30,9 @@ class SkillIQLeadersFragment : Fragment(), ViewModelResponseListener {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?): View? {
-        val mBinding = FragmentSkillIqLeadersBinding.inflate(inflater)
+        savedInstanceState: Bundle?
+    ): View? {
+        mBinding = FragmentSkillIqLeadersBinding.inflate(inflater)
         return mBinding.root
     }
 
@@ -42,8 +46,14 @@ class SkillIQLeadersFragment : Fragment(), ViewModelResponseListener {
     }
 
     override fun onSkillIQLeaderSuccess(skillIQLeaderResponse: MutableLiveData<MutableList<SkillIQLeader>>) {
-        skillIQLeaderResponse.observe(this, Observer {
-            Toast.makeText(context, "${it.size}", Toast.LENGTH_SHORT).show()
+        skillIQLeaderResponse.observe(this, Observer { leaders ->
+            skill_iq_leader_rv.also {
+                it.layoutManager =
+                    LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+                it.setHasFixedSize(true)
+                it.adapter = SkillIQLeadersAdapter(leaders, requireContext())
+            }
+
         })
     }
 

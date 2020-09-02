@@ -10,7 +10,7 @@ import com.example.gadsleaderboardapp.R
 import com.example.gadsleaderboardapp.databinding.LLeadersItemBinding
 import com.example.gadsleaderboardapp.models.LearningLeader
 
-class LearningLeadersAdapter(private val mLearningLeaders: List<LearningLeader>,
+class LearningLeadersAdapter(private val mLearningLeaders: MutableList<LearningLeader>,
                              private val mContext: Context) :
         RecyclerView.Adapter<LearningLeadersAdapter.BindingHolder>() {
 
@@ -32,5 +32,4 @@ class LearningLeadersAdapter(private val mLearningLeaders: List<LearningLeader>,
         var binding: LLeadersItemBinding = DataBindingUtil.bind(itemView)!!
 
     }
-
 }

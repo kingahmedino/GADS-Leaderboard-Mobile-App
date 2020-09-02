@@ -10,6 +10,7 @@
         tools:context=".fragments.SkillIQLeadersFragment">
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/skill_iq_leader_rv"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
