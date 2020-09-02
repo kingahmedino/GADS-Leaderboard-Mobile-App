@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
+    <data>
+        <variable
+            name="learningLeader"
+            type="com.example.gadsleaderboardapp.models.LearningLeader" />
+
+    </data>
 
     <com.google.android.material.card.MaterialCardView
         xmlns:android="http://schemas.android.com/apk/res/android"
@@ -30,7 +36,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="2dp"
                 android:layout_marginEnd="4dp"
-                android:text="TextView"
+                android:text="@{learningLeader.name}"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body2"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toTopOf="@+id/learning_leader_details"
@@ -46,7 +52,7 @@
                 android:layout_marginStart="2dp"
                 android:layout_marginTop="4dp"
                 android:layout_marginEnd="4dp"
-                android:text="TextView"
+                android:text="@{learningLeader.hours + ` learning hours, ` + learningLeader.country}"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
                 app:layout_constraintBottom_toBottomOf="@+id/imageView"
                 app:layout_constraintEnd_toEndOf="parent"
