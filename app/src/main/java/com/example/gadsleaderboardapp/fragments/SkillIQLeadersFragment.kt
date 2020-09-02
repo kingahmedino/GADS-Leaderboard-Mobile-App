@@ -10,6 +10,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.gadsleaderboardapp.R
+import com.example.gadsleaderboardapp.databinding.FragmentSkillIqLeadersBinding
 import com.example.gadsleaderboardapp.interfaces.ViewModelResponseListener
 import com.example.gadsleaderboardapp.models.LearningLeader
 import com.example.gadsleaderboardapp.models.SkillIQLeader
@@ -27,7 +28,8 @@ class SkillIQLeadersFragment : Fragment(), ViewModelResponseListener {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_skill_iq_leaders, container, false)
+        val mBinding = FragmentSkillIqLeadersBinding.inflate(inflater)
+        return mBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

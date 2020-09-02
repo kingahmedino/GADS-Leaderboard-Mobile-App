@@ -11,6 +11,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.gadsleaderboardapp.R
+import com.example.gadsleaderboardapp.databinding.FragmentLearningLeadersBinding
 import com.example.gadsleaderboardapp.interfaces.RepoResponseListener
 import com.example.gadsleaderboardapp.interfaces.ViewModelResponseListener
 import com.example.gadsleaderboardapp.models.LearningLeader
@@ -29,7 +30,8 @@ class LearningLeadersFragment : Fragment(), ViewModelResponseListener {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_learning_leaders, container, false)
+        val mBinding = FragmentLearningLeadersBinding.inflate(inflater)
+        return mBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
