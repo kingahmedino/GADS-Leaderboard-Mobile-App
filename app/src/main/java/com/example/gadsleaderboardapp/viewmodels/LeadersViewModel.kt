@@ -21,6 +21,10 @@ class LeadersViewModel: ViewModel(), RepoResponseListener {
         DataRepository.getSkillIQLeaders()
     }
 
+    override fun onSubmitProjectSuccess(mutableLiveData: MutableLiveData<String>) {
+
+    }
+
     override fun onSuccess(s: String) {
         mViewModelResponseListener?.onFailure(s)
     }

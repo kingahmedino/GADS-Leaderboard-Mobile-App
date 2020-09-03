@@ -1,6 +1,6 @@
 package com.example.gadsleaderboardapp.interfaces
 
 interface SubmitProjectListener {
-    fun onSuccess()
+    fun onSuccess(mutableResponse: Unit)
     fun onFailure()
 }
