@@ -10,6 +10,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.gadsleaderboardapp.databinding.ActivitySubmitBinding
 import com.example.gadsleaderboardapp.databinding.AlertDialogBinding
+import com.example.gadsleaderboardapp.databinding.ResponseDialogBinding
 import com.example.gadsleaderboardapp.interfaces.SubmitProjectListener
 import com.example.gadsleaderboardapp.viewmodels.SubmitActivityViewModel
 import kotlinx.android.synthetic.main.activity_submit.*
@@ -17,7 +18,6 @@ import kotlinx.android.synthetic.main.activity_submit.*
 class SubmitActivity : AppCompatActivity(), SubmitProjectListener {
     lateinit var mBinding: ActivitySubmitBinding
     lateinit var mSubmitViewModel: SubmitActivityViewModel
-    lateinit var mBuilder: AlertDialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,23 +43,34 @@ class SubmitActivity : AppCompatActivity(), SubmitProjectListener {
         val dialogView = layoutInflater.inflate(R.layout.alert_dialog, null)
         val binding = AlertDialogBinding.bind(dialogView)
 
-        mBuilder = AlertDialog.Builder(this).create()
-        mBuilder.setView(dialogView)
-        mBuilder.show()
+        val builder: AlertDialog = AlertDialog.Builder(this).create()
+        builder.setView(dialogView)
+        builder.show()
 
         binding.button.setOnClickListener {
-            mBuilder.dismiss()
+            builder.dismiss()
             mBinding.viewModel?.continueWithRequest()
         }
     }
 
     override fun onSuccess(mutableLiveData: MutableLiveData<String>) {
-        mutableLiveData.observe(this, Observer {
-            Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
-        })
+        createResponseDialog(R.drawable.ic_baseline_check_circle, "Submission Successful")
     }
 
     override fun onFailure(s: String) {
+        createResponseDialog(R.drawable.ic_baseline_report_problem_24, "Submission Unsuccessful")
         Toast.makeText(this, s, Toast.LENGTH_SHORT).show()
+    }
+
+    private fun createResponseDialog(res: Int, s: String) {
+        val dialog = layoutInflater.inflate(R.layout.response_dialog, null)
+        val binding = ResponseDialogBinding.bind(dialog)
+
+        val builder: AlertDialog = AlertDialog.Builder(this).create()
+        builder.setView(dialog)
+        builder.show()
+
+        binding.submissionResponse.text = s
+        binding.img.setImageResource(res)
     }
 }
