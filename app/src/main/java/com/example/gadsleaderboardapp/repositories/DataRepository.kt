@@ -58,6 +58,9 @@ object DataRepository {
                         mutableLiveData.value = response.body()
                         Log.d("Data Repository", "Successful: ${mutableLiveData.value.toString()}")
                         mRepoResponseListener?.onSkillIQLeaderResponseSuccessful(mutableLiveData)
+                    }else{
+                        Log.d("Data Repository", "Unsuccessful: ${response.errorBody().toString()}")
+                        mRepoResponseListener?.onSuccess(response.errorBody().toString())
                     }
                 }
 
