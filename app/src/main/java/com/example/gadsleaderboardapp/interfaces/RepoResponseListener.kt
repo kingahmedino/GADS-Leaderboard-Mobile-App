@@ -5,6 +5,7 @@ import com.example.gadsleaderboardapp.models.LearningLeader
 import com.example.gadsleaderboardapp.models.SkillIQLeader
 
 interface RepoResponseListener {
+    fun onSubmitProjectSuccess(mutableLiveData: MutableLiveData<String>)
     fun onSuccess(s: String)
     fun onLearningLeaderResponseSuccessful(learningLeaderResponse: MutableLiveData<MutableList<LearningLeader>>)
     fun onSkillIQLeaderResponseSuccessful(skillIQLeaderResponse: MutableLiveData<MutableList<SkillIQLeader>>)

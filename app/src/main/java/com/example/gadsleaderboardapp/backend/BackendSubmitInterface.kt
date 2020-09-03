@@ -1,5 +1,6 @@
 package com.example.gadsleaderboardapp.backend
 
+import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -15,7 +16,7 @@ interface BackendSubmitInterface {
         @Field("entry.1877115667")firstName: String,
         @Field("entry.2006916086")lastName: String,
         @Field("entry.284483984")projectLink: String
-    ): Call<Unit>
+    ): Call<ResponseBody>
 
     companion object{
         operator fun invoke(): BackendSubmitInterface{
