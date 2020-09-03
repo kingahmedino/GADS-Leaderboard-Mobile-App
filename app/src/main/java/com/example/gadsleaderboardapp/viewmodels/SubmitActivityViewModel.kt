@@ -22,6 +22,7 @@ class SubmitActivityViewModel: ViewModel(), RepoResponseListener {
             mSubmitProjectListener?.onFailure("Check that all fields are filled")
             return
         }
+        DataRepository.mRepoResponseListener = this
         DataRepository.submitProject(email!!, firstName!!, lastName!!, projectLink!!)
     }
 

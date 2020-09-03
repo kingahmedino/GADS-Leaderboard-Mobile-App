@@ -21,8 +21,8 @@ object DataRepository {
         BackendInterface().getLearningLeaders()
             .enqueue(object : Callback<MutableList<LearningLeader>> {
                 override fun onFailure(call: Call<MutableList<LearningLeader>>, t: Throwable) {
-                    Log.d("Data Repository", "OnFailure: ${t.message.toString()}")
-                    mRepoResponseListener?.onResponseFailure("Failure: ${t.message.toString()}")
+                    Log.d("Data Repository", "OnFailure: ${t.message}")
+                    mRepoResponseListener?.onResponseFailure("Failure: ${t.message}")
                 }
 
                 override fun onResponse(
@@ -35,7 +35,7 @@ object DataRepository {
                         mRepoResponseListener?.onLearningLeaderResponseSuccessful(mutableLiveData)
                     } else {
                         Log.d("Data Repository", "Unsuccessful: ${response.errorBody().toString()}")
-                        mRepoResponseListener?.onSuccess(response.errorBody().toString())
+                        mRepoResponseListener?.onSuccess(response.errorBody()?.string()!!)
                     }
                 }
             })
@@ -47,7 +47,8 @@ object DataRepository {
         BackendInterface().getSkillIQLeaders()
             .enqueue(object : Callback<MutableList<SkillIQLeader>> {
                 override fun onFailure(call: Call<MutableList<SkillIQLeader>>, t: Throwable) {
-                    mRepoResponseListener?.onResponseFailure("Failure: ${t.message.toString()}")
+                    Log.d("Data Repository", "OnFailure: ${t.message}")
+                    mRepoResponseListener?.onResponseFailure("Failure: ${t.message}")
                 }
 
                 override fun onResponse(
@@ -60,7 +61,7 @@ object DataRepository {
                         mRepoResponseListener?.onSkillIQLeaderResponseSuccessful(mutableLiveData)
                     }else{
                         Log.d("Data Repository", "Unsuccessful: ${response.errorBody().toString()}")
-                        mRepoResponseListener?.onSuccess(response.errorBody().toString())
+                        mRepoResponseListener?.onSuccess(response.errorBody()?.string()!!)
                     }
                 }
 
@@ -73,8 +74,8 @@ object DataRepository {
         BackendSubmitInterface().submitProject(email, firstName, lastName, projectLink)
             .enqueue(object : Callback<ResponseBody> {
                 override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
-                    Log.d("Submit Project", "Failure: ${t.message.toString()}")
-                    mRepoResponseListener?.onResponseFailure(t.message.toString())
+                    Log.d("Submit Project", "Failure: ${t.message}")
+                    mRepoResponseListener?.onResponseFailure(t.message!!)
                 }
 
                 override fun onResponse(
@@ -82,12 +83,12 @@ object DataRepository {
                     response: Response<ResponseBody>
                 ) {
                     if (response.isSuccessful){
-                        mutableLiveData.value = response.body().toString()
-                        Log.d("Submit Project", "Successful: ${mutableLiveData.value.toString()}")
+                        mutableLiveData.value = response.body()?.string()
+                        Log.d("Submit Project", "Successful: ${mutableLiveData.value}")
                         mRepoResponseListener?.onSubmitProjectSuccess(mutableLiveData)
                     }else{
-                        Log.d("Submit Project", "UnSuccessful: ${response.errorBody().toString()}")
-                        mRepoResponseListener?.onSuccess(response.errorBody().toString())
+                        Log.d("Submit Project", "UnSuccessful: ${response.errorBody()?.string()}")
+                        mRepoResponseListener?.onSuccess(response.errorBody()?.string()!!)
                     }
                 }
 
