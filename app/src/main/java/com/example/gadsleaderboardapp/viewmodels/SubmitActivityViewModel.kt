@@ -17,6 +17,10 @@ class SubmitActivityViewModel: ViewModel(), RepoResponseListener {
     var mSubmitProjectListener: SubmitProjectListener? = null
 
     fun onSubmitButtonClick(view: View){
+        mSubmitProjectListener?.onStarted()
+    }
+
+    fun continueWithRequest(){
         if (email.isNullOrEmpty() || firstName.isNullOrEmpty() ||
             lastName.isNullOrEmpty() || projectLink.isNullOrEmpty()){
             mSubmitProjectListener?.onFailure("Check that all fields are filled")
